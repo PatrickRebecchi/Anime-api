@@ -13,7 +13,8 @@ public class SecurityConfig {
         http .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/usuario").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/usuarios").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/usuarios").permitAll()
                         .requestMatchers(HttpMethod.GET, "/anime/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/anime/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/anime/**").hasRole("ADMIN")
