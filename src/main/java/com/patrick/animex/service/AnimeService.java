@@ -1,8 +1,12 @@
 package com.patrick.animex.service;
 
+import com.patrick.animex.DTO.request.AnimeRequestDTO;
 import com.patrick.animex.DTO.response.AnimeResponseDTO;
 import com.patrick.animex.entity.Anime;
 import com.patrick.animex.repository.AnimeRepository;
+import com.patrick.animex.validacao.ValidacaoAnimeCriar;
+import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +19,10 @@ public class AnimeService {
     @Autowired
     private AnimeRepository repository;
 
+    @Autowired
+    private List<ValidacaoAnimeCriar> validacao;
+
+    @Transactional
     public List<AnimeResponseDTO> obterTodosAnimes() {
         return converteDados(repository.findAll());
     }
@@ -31,4 +39,8 @@ public class AnimeService {
     }
 
 
+    public AnimeResponseDTO cadastrar(AnimeRequestDTO dto) {
+        validacao.forEach(n -> n.validar(dto));
+
+    }
 }

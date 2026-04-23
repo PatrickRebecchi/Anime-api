@@ -1,5 +1,6 @@
 package com.patrick.animex.entity;
 
+import com.patrick.animex.DTO.request.UsuarioRequestDTO;
 import com.patrick.animex.entity.enums.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -26,8 +27,14 @@ public class Usuario {
     private String email;
     @Enumerated(EnumType.STRING)
     private Role role;
+    
+    private String senha;
+
+    private java.time.LocalDateTime dataCriacao;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private List<Favorito> usuarioList;
+
+
 
 }

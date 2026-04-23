@@ -8,6 +8,8 @@ public record UsuarioRequestDTO(
         String nome,
         @NotBlank(message = "Email obrigatório")
         @Email(message = "Email inválido")
-        String email
+        String email,
+        @NotBlank(message = "Senha obrigatória")
+        String senha
 ) {
 }
